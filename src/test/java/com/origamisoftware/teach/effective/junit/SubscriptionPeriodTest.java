@@ -3,7 +3,6 @@ package com.origamisoftware.teach.effective.junit;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static junit.framework.Assert.assertEquals;
@@ -45,30 +44,49 @@ public class SubscriptionPeriodTest {
 
 
     /**
-     * Currently, this test fails, it is your job to make it pass.
+     * TODO Currently, this test fails, it is your job to make it pass.
      */
     @Test
     public void testTotalDays() {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
-        int daysRemaining = subscriptionPeriod.getTotalDays();
-        long diffInDays = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 * 24);
-        assertEquals(daysRemaining, diffInDays);
-     }
-
-
-    /**
-     * Currently, this test fails, it is your job to make it pass.
-     */
-    @Test
-    public void testTotalDuration() {
-        SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
-        int daysRemaining = subscriptionPeriod.getDaysRemaining(Calendar.getInstance().getTime());
-        long diffInDays = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 * 24);
-        assertEquals(daysRemaining, diffInDays);
+        int totalDays = subscriptionPeriod.getTotalDays();
+        long differenceInDays = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 * 24);
+        assertEquals(totalDays, differenceInDays);
     }
 
 
+    /**
+     * TODO Currently, this test fails, it is your job to make it pass.
+     */
+    @Test
+    public void testTotalMonths() {
+        SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
+        int totalMonths = subscriptionPeriod.getTotalMonths();
+        long differenceInMonth = differenceInMonths(now, sixthMonthsFromNow);
+        assertEquals(totalMonths, differenceInMonth);
+    }
 
+
+    // TODO add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
+
+
+    // it is perfectly fine to have helper methods in test code.
+
+    /**
+     * This helper method returns the number of months in the range.
+     *
+     * @param start
+     * @param stop
+     * @return
+     */
+    private int differenceInMonths(Calendar start, Calendar stop) {
+        int stopYear = stop.get(Calendar.YEAR);
+        int startYear = start.get(Calendar.YEAR);
+        int stopMonth = stop.get(Calendar.MONTH);
+        int startMonth = start.get(Calendar.MONTH);
+        return (stopYear - startYear) * 12 + (stopMonth - startMonth);
+
+    }
 
 
 }
