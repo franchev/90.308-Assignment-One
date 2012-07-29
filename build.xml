@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="File IO" default="all" basedir=".">
+
+    <!-- this properties are used by ant to find the projects, src, lib directory -->
+    <property name="src.dir" value="src"/>
+    <property name="lib.dir" value="lib"/>
+
+    <!-- this is the name of the class that has the main method you wish to run -->
+    <property name="main.class" value="your main class name here"/>
+
+    <!-- this properites are directories that are created with your project is built
+         the directory that classes.dir  referes to will contain the compiler's output - the .class files
+    -->
+    <property name="classes.dir" value="build"/>
+    <!-- this directory is used by JUnit. Test results are placed here in a nice HTML format -->
+    <property name="report.dir" value="report"/>
+
+
+    <!-- this sets up the classpath for the project. Whenever you a .jar to the lib directory it will auatomatically be
+        be added to the classpath
+    -->
+    <path id="project.classpath">
+        <pathelement path="${classes.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+
+    <!-- targets follow - each target does one thing in the compile, run, test and build process -->
+
+    <target name="clean" description="deletes all build artifacts (anything created by this build file)">
+        <delete dir="${classes.dir}"/>
+        <delete dir="${report.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization - create output directories" depends="clean">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${report.dir}"/>
+    </target>
+
+    <target name="compile" description="Compile all the code; produce classes" depends="init">
+        <javac destdir="${classes.dir}" debug="true" fork="true" srcdir="${src.dir}">
+            <classpath refid="project.classpath"/>
+        </javac>
+    </target>
+
+    <target name="test" description="Runs all the JUnit tests and generates the test results report" depends="compile">
+
+        <junit printsummary="yes" haltonfailure="false" showoutput="true" failureproperty="test_failure">
+            <classpath refid="project.classpath"/>
+
+            <formatter type="xml"/>
+
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${src.dir}">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+
+        <junitreport todir="${report.dir}">
+            <fileset dir="${report.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${report.dir}/html"/>
+        </junitreport>
+
+        <!-- if a test fails then the property  "test_failure" will be set and we fail now.
+         Failng now, rather than when the test actually failed allows all the tests to complete and the report
+         to be generated. 
+         -->
+        <fail if="test_failure" message="At least one JUnit test failed. Please see report."/>
+
+    </target>
+
+    <target name="run" depends="compile" description="Runs the application">
+
+        <java fork="true" classname="${main.class}">
+            <classpath refid="project.classpath"/>
+        </java>
+
+    </target>
+
+    <!-- this is the default target - it does everything -->
+    <target name="all" depends="init, clean, compile, test"
+            description="deletes previous work, compiles new class, runs hello program"/>
+
+</project>
