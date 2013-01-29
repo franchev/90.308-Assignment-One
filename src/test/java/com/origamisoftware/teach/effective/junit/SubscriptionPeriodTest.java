@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.fail;
 
 /**
  * @author Spencer A Marks
@@ -88,5 +89,10 @@ public class SubscriptionPeriodTest {
 
     }
 
+
+    @Test
+    public void brokenTestYikes() {
+        fail("This is broken.");
+    }
 
 }
