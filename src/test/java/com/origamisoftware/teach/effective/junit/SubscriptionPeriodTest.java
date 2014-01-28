@@ -45,7 +45,7 @@ public class SubscriptionPeriodTest {
 
 
     /**
-     * TODO Currently, this test fails, it is your job to make it pass.
+     *  Currently, this test fails, it is your job to make it pass.
      */
     @Test
     public void testTotalDays() {
@@ -57,7 +57,7 @@ public class SubscriptionPeriodTest {
 
 
     /**
-     * TODO Currently, this test fails, it is your job to make it pass.
+     *  Currently, this test fails, it is your job to make it pass.
      */
     @Test
     public void testTotalMonths() {
@@ -68,7 +68,7 @@ public class SubscriptionPeriodTest {
     }
 
 
-    // TODO add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
+    //  add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
 
 
     // it is perfectly fine to have helper methods in test code.

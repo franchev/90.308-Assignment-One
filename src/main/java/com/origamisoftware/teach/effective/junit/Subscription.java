@@ -14,6 +14,7 @@ public class Subscription {
 
     private BigDecimal rate;
     private SubscriptionPeriod subscriptionPeriod;
+    private String emailAddress;
 
     /**
      * Creates a new  Subscription instance.
@@ -21,9 +22,19 @@ public class Subscription {
      * @param rate               the cost of the subscription as a <CODE> </CODE>BigDecimal </CODE>
      * @param subscriptionPeriod the start and stop date of the subscription
      */
-    public Subscription(BigDecimal rate, SubscriptionPeriod subscriptionPeriod) {
+    public Subscription(BigDecimal rate, SubscriptionPeriod subscriptionPeriod, String emailAddress) {
         this.rate = rate;
         this.subscriptionPeriod = subscriptionPeriod;
+        this.emailAddress = emailAddress;
+    }
+
+    /**
+     * Returns the email address of the subscription
+     *
+     * @return
+     */
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     /**
@@ -34,8 +45,6 @@ public class Subscription {
     public BigDecimal getRate() {
         return rate;
     }
-
-
     /**
      * Returns the period the subscription is valid for.
      */
