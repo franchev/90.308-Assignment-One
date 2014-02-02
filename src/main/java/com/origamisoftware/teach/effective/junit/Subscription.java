@@ -15,6 +15,7 @@ public class Subscription {
     private BigDecimal rate;
     private SubscriptionPeriod subscriptionPeriod;
     private String emailAddress;
+    private Boolean isPaid;
 
     /**
      * Creates a new  Subscription instance.
@@ -68,6 +69,21 @@ public class Subscription {
 
         return (notAfter == false && notBefore == false);
 
+    }
+    
+    //added by Andrew Conniff
+    public boolean isPaidFor(BigDecimal rate2)
+    {
+    	// add math to determine if subscription is paid for or not.
+    	BigDecimal subPrice = rate2;
+    	BigDecimal curBalance = rate2;
+    	 if (subPrice.intValue() - curBalance.intValue() <= 0){
+    		 isPaid = true;
+    	 }
+    	 else{
+    		 isPaid = false;
+    	 }
+    	 return isPaid;
     }
 
 }

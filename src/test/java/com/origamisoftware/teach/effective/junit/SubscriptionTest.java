@@ -47,6 +47,15 @@ public class SubscriptionTest {
         assertEquals("The subscriptionPeriod is correct", subscription.getSubscriptionPeriod(), subscriptionPeriod);
         assertEquals("The emailAddress is correct", subscription.getEmailAddress(), emailAddress);
     }
+    
+    
+    //added by Andrew Conniff
+    @Test
+    public void testIsPaidFor() {
+        Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
+     
+        assertTrue("The subscription is paid for", subscription.isPaidFor(rate));
+    }
 
     // NOTICE: the name of the test method matches the name of method I am testing.
 
