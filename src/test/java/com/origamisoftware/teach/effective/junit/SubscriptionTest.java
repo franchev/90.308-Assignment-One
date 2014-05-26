@@ -31,7 +31,7 @@ public class SubscriptionTest {
         endOfSubscription.add(Calendar.YEAR, 1);
         rate = new BigDecimal(10.00);
         subscriptionPeriod = new SubscriptionPeriod(now, endOfSubscription.getTime());
-        emailAddress = "cmiyachi@alum.mit.edu";
+        emailAddress = "test_user@test-mail.com";
     }
 
     @Test
@@ -71,12 +71,25 @@ public class SubscriptionTest {
     /**
      *  The email address must have an "@" in it.
      */
-    @Test
+    @Test //J Strong
+    public void testEmailAddressFormat() {
+        Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
+        String testEmail = subscription.getEmailAddress();
+        assertTrue("The e-mail address should have an @ in it", testEmail.contains("@"));
+    }
+
+    @Test //J Strong
     public void testEmailAddress() {
         Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
-        Calendar twoYearsAgo = Calendar.getInstance();
-        twoYearsAgo.add(Calendar.YEAR, -2);
-        assertFalse("The subscription should not be active two years ago", subscription.isActive(twoYearsAgo));
+        assertTrue("The e-mail address should be test_user@test-mail.com", subscription.getEmailAddress().equals(emailAddress));
+    }
+
+    @Test //J Strong
+    public void testTotalSubscriptionAmount() {
+        Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
+        int months = subscriptionPeriod.getTotalMonths();
+        BigDecimal totalAmount = rate.multiply(BigDecimal.valueOf(months));
+        assertEquals("The totalAmount equals getSubscriptionTotal", totalAmount, subscription.getSubscriptionTotal());
     }
 
 }

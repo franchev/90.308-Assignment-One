@@ -70,4 +70,14 @@ public class Subscription {
 
     }
 
+    /* J Strong
+    Returns the total cost of the subscription.
+     */
+    public BigDecimal getSubscriptionTotal() {
+        BigDecimal subscriptionTotal = new BigDecimal(0);
+        BigDecimal months = new BigDecimal(subscriptionPeriod.getTotalMonths());
+        subscriptionTotal = rate.multiply(months);
+        return subscriptionTotal;
+    }
+
 }
