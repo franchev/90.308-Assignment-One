@@ -77,7 +77,7 @@ public class SubscriptionPeriodTest {
     /**
      * Checks if the subscription will end before 1/1/new year.
      */
-    @Test //J Strong
+    @Test
     public void testEndBeforeNewYear() {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
         assertTrue("Subscription ends before the new year", subscriptionPeriod.endBeforeNewYear());
@@ -87,7 +87,7 @@ public class SubscriptionPeriodTest {
      * Tests the renewal notice request date which should be 30 days before the end date.
      *
      */
-    @Test //J Strong
+    @Test
     public void testRenewalNoticeDate() {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
         long renewalNoticeDateInMS;
@@ -100,7 +100,7 @@ public class SubscriptionPeriodTest {
     /**
      * Checks that the stop date comes AFTER the start date.
      */
-    @Test //J Strong
+    @Test
     public void testStartBeforeStop() {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
         assertTrue("Start Date is before End Date", subscriptionPeriod.getStartBeforeStop());
@@ -123,13 +123,6 @@ public class SubscriptionPeriodTest {
         int startMonth = start.get(Calendar.MONTH);
         return (stopYear - startYear) * 12 + (stopMonth - startMonth);
 
-    }
-
-
-    @Test
-    public void brokenTestYikes() {
-        //fail("This is broken.");
-        //("This is not broken!");
     }
 
 }

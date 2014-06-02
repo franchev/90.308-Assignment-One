@@ -10,6 +10,7 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
 /**
  * JUnit tests for the <CODE></CODE>Subscription</CODE> class
@@ -68,23 +69,49 @@ public class SubscriptionTest {
         assertFalse("The subscription should not be active two years ago", subscription.isActive(twoYearsAgo));
     }
 
+    @Test
+    public void testIsActivePositiveMock(){
+        SubscriptionPeriod spMock = mock(SubscriptionPeriod.class);
+        Subscription subscription = new Subscription(rate, spMock, emailAddress);
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_MONTH, 1);
+
+        when(spMock.getStartDate()).thenReturn(now);
+        when(spMock.getEndDate()).thenReturn(endOfSubscription.getTime());
+        assertTrue("The subscription is active", subscription.isActive(tomorrow));
+    }
+
+    @Test
+    public void testIsActiveMockNegative(){
+        SubscriptionPeriod spMock = mock(SubscriptionPeriod.class);
+        Subscription subscription = new Subscription(rate, spMock, emailAddress);
+        Calendar today = Calendar.getInstance();
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_MONTH, 1);
+
+        when(spMock.getStartDate()).thenReturn(tomorrow.getTime());
+        when(spMock.getEndDate()).thenReturn(endOfSubscription.getTime());
+        assertFalse("The subscription is not active", subscription.isActive(today));
+
+    }
+
     /**
      *  The email address must have an "@" in it.
      */
-    @Test //J Strong
+    @Test
     public void testEmailAddressFormat() {
         Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
         String testEmail = subscription.getEmailAddress();
         assertTrue("The e-mail address should have an @ in it", testEmail.contains("@"));
     }
 
-    @Test //J Strong
+    @Test
     public void testEmailAddress() {
         Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
         assertTrue("The e-mail address should be test_user@test-mail.com", subscription.getEmailAddress().equals(emailAddress));
     }
 
-    @Test //J Strong
+    @Test
     public void testTotalSubscriptionAmount() {
         Subscription subscription = new Subscription(rate, subscriptionPeriod, emailAddress);
         int months = subscriptionPeriod.getTotalMonths();

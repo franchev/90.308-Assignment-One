@@ -76,7 +76,7 @@ public class SubscriptionPeriod {
      */
 
     /**
-     * Returns true/false on whether subscription ends before the new year.  [J Strong]
+     * Returns true/false on whether subscription ends before the new year.
      * @return
      */
     public boolean endBeforeNewYear() {
@@ -105,13 +105,11 @@ public class SubscriptionPeriod {
         long thirtyDaysInMS = 30 * 1000 * 60 * 60 * 24;
         long renewalNoticeDateLong = stop.getTimeInMillis() - thirtyDaysInMS;
         Date renewalNoticeDate = new Date(renewalNoticeDateLong);
-        //Date renewalNoticeDate = new Date(stopDate.getTimeInMillis());
         return renewalNoticeDate;
     }
 
     /**
      * Returns True/False on whether the start date is before the stop date.
-     * J Strong
      */
     public boolean getStartBeforeStop() {
 

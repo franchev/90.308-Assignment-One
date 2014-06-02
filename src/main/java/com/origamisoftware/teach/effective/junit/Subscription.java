@@ -1,6 +1,7 @@
 package com.origamisoftware.teach.effective.junit;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -70,13 +71,13 @@ public class Subscription {
 
     }
 
-    /* J Strong
+    /*
     Returns the total cost of the subscription.
      */
     public BigDecimal getSubscriptionTotal() {
         BigDecimal subscriptionTotal = new BigDecimal(0);
-        BigDecimal months = new BigDecimal(subscriptionPeriod.getTotalMonths());
-        subscriptionTotal = rate.multiply(months);
+        int months = subscriptionPeriod.getTotalMonths();
+        subscriptionTotal = rate.multiply(new BigDecimal(String.valueOf(months)));
         return subscriptionTotal;
     }
 
