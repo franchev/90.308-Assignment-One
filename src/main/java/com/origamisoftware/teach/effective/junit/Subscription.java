@@ -1,7 +1,6 @@
 package com.origamisoftware.teach.effective.junit;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,7 +14,6 @@ public class Subscription {
 
     private BigDecimal rate;
     private SubscriptionPeriod subscriptionPeriod;
-    private String emailAddress;
 
     /**
      * Creates a new  Subscription instance.
@@ -23,19 +21,9 @@ public class Subscription {
      * @param rate               the cost of the subscription as a <CODE> </CODE>BigDecimal </CODE>
      * @param subscriptionPeriod the start and stop date of the subscription
      */
-    public Subscription(BigDecimal rate, SubscriptionPeriod subscriptionPeriod, String emailAddress) {
+    public Subscription(BigDecimal rate, SubscriptionPeriod subscriptionPeriod) {
         this.rate = rate;
         this.subscriptionPeriod = subscriptionPeriod;
-        this.emailAddress = emailAddress;
-    }
-
-    /**
-     * Returns the email address of the subscription
-     *
-     * @return
-     */
-    public String getEmailAddress() {
-        return emailAddress;
     }
 
     /**
@@ -46,6 +34,8 @@ public class Subscription {
     public BigDecimal getRate() {
         return rate;
     }
+
+
     /**
      * Returns the period the subscription is valid for.
      */
@@ -69,16 +59,6 @@ public class Subscription {
 
         return (notAfter == false && notBefore == false);
 
-    }
-
-    /*
-    Returns the total cost of the subscription.
-     */
-    public BigDecimal getSubscriptionTotal() {
-        BigDecimal subscriptionTotal = new BigDecimal(0);
-        int months = subscriptionPeriod.getTotalMonths();
-        subscriptionTotal = rate.multiply(new BigDecimal(String.valueOf(months)));
-        return subscriptionTotal;
     }
 
 }
