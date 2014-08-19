@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
+<!-- this file shows you how to build and mange your project with ANT.
+     It is not currently used and is here for informational purposes only
+     and then only if you are curious.
+-->
+
 <project name="90.308 Project" default="all" basedir=".">
 
     <property name="src.dir" value="src${file.separator}main${file.separator}java" description="project source code"/>
