@@ -1,7 +1,10 @@
 package com.origamisoftware.teach.effective.junit;
 
+import org.junit.Before;
+
 import java.util.Date;
 
+import static java.lang.System.out;
 /**
  * A simple Date Range Class
  *
@@ -59,7 +62,14 @@ public class SubscriptionPeriod {
         return 0;
     }
 
+
     /*  TODO add new functionality to the SubscriptionPeriod class here and write a test for it in the test class.
      *  This functionality can be as simple as you want. The goal is to give you practice writing a test and some functionality
      */
+
+    //This is a test comment
+
+
+
+
 }

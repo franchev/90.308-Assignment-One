@@ -70,6 +70,7 @@ public class SubscriptionPeriodTest {
 
     // TODO add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
 
+    // This is a test comment
 
     // it is perfectly fine to have helper methods in test code.
 
