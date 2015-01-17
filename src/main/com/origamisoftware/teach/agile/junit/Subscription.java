@@ -1,4 +1,4 @@
-package com.origamisoftware.teach.effective.junit;
+package com.origamisoftware.teach.agile.junit;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -27,9 +27,7 @@ public class Subscription {
     }
 
     /**
-     * Returns the cost of the subscription
-     *
-     * @return
+     * @return the cost of the subscription
      */
     public BigDecimal getRate() {
         return rate;
@@ -44,10 +42,8 @@ public class Subscription {
     }
 
     /**
-     * Returns true if the subscription is active at the time provided.
-     *
      * @param calendar is the subscription active at this time?
-     * @return
+     * @return true if the subscription is active at the time provided.
      */
     public boolean isActive(Calendar calendar) {
         Date endDate = subscriptionPeriod.getEndDate();

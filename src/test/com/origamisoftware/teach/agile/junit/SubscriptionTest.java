@@ -1,4 +1,4 @@
-package com.origamisoftware.teach.effective.junit;
+package com.origamisoftware.teach.agile.junit;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
-import static org.junit.Assert.assertEquals;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
