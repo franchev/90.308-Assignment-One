@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * @author Spencer A Marks
@@ -72,7 +72,7 @@ public class SubscriptionPeriodTest {
      */
     @Test
     public void testHashExpired() {
-        assertTrue(true);
+       assertFalse(false);
     }
 
 
