@@ -58,7 +58,7 @@ public class SubscriptionPeriodTest {
 
     /**
      * TODO Currently, this test fails, it is your job to make it pass.
-     */
+            */
     @Test
     public void testTotalMonths() {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
@@ -71,8 +71,13 @@ public class SubscriptionPeriodTest {
      *  TODO fix this test
      */
     @Test
-    public void testHashExpired() {
-        fail("This test needs to written!.");
+    public void testHasExpired() {
+        //fail("This test needs to written!.");
+        Calendar sevenMonthsFromNow = Calendar.getInstance();
+        sevenMonthsFromNow.add(Calendar.MONTH, 7);
+        SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
+        boolean hasExpired= subscriptionPeriod.hasExpired(sevenMonthsFromNow.getTime());
+        assertEquals(true, hasExpired);
     }
 
 

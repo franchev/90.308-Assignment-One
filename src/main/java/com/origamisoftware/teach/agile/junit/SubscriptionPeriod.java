@@ -26,7 +26,7 @@ public class SubscriptionPeriod {
     }
 
     /**
-     * @return the the start date of the subscription
+     * @return  the start date of the subscription
      */
     public Date getStartDate() {
         return startDate;
@@ -43,8 +43,9 @@ public class SubscriptionPeriod {
      * @return the total Days in the subscription
      */
     public int getTotalDays() {
-        // todo implement method
-        return 0;
+        return (int) ((endDate.getTime() - startDate.getTime()) /
+                (1000 * 60 * 60 * 24));
+
     }
 
     /**
@@ -52,8 +53,11 @@ public class SubscriptionPeriod {
      */
     public int getTotalMonths() {
         // todo implement method
+        int startMonth = startDate.getYear() * 12 + startDate.getMonth();
+        int endMonth = endDate.getYear() * 12 + endDate.getMonth();
 
-        return 0;
+        return endMonth - startMonth;
+
     }
 
     /**
@@ -61,12 +65,17 @@ public class SubscriptionPeriod {
      * subscription period or false otherwise.
      *
      * @param date a date to consider
-     * @return true if true if the date comes after the expiration date of this
+     * @return true if the date comes after the expiration date of this
      * subscription period or false otherwise.
      */
     public boolean hasExpired(Date date) {
         // todo implement method
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        if(date.compareTo(endDate) > 0)
+            return true;
+        return false;
+
+
     }
 
 }
